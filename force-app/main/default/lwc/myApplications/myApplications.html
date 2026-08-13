@@ -1,0 +1,35 @@
+<template>
+
+    <lightning-card title="My Applications">
+
+        <div class="slds-p-around_medium">
+
+            <template if:true={hasApplications}>
+
+                <template for:each={applications} for:item="app">
+
+                    <div key={app.Id} class="slds-box slds-m-bottom_small">
+
+                        <template if:true={app.Job__r}>
+                            <h2>{app.Job__r.Company__c}</h2>
+                            <p><b>Job:</b> {app.Job__r.Name}</p>
+                        </template>
+
+                        <p><b>Status:</b> {app.Status__c}</p>
+                        <p><b>Date:</b> {app.Application_Date__c}</p>
+
+                    </div>
+
+                </template>
+
+            </template>
+
+            <template if:false={hasApplications}>
+                <p>No applications found</p>
+            </template>
+
+        </div>
+
+    </lightning-card>
+
+</template>

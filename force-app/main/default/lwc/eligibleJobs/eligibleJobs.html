@@ -1,0 +1,61 @@
+<template>
+
+    <lightning-card title="Eligible Jobs">
+
+        <div class="slds-p-around_medium">
+
+            <template for:each={jobs} for:item="job">
+
+                <div key={job.Id} class="slds-box slds-m-bottom_small">
+
+                    <h2>{job.Company__c}</h2>
+
+                    <p><b>Job:</b> {job.Name}</p>
+                    <p><b>Location:</b> {job.Location__c}</p>
+                    <p><b>CGPA:</b> {job.Minimum_CGPA__c}</p>
+
+                    <lightning-button
+                        label="View Details"
+                        data-id={job.Id}
+                        onclick={handleViewDetails}>
+                    </lightning-button>
+
+                    <lightning-button
+                        label="Apply"
+                        variant="brand"
+                        data-id={job.Id}
+                        onclick={handleApply}>
+                    </lightning-button>
+
+                </div>
+
+            </template>
+
+        </div>
+
+    </lightning-card>
+
+    <!-- Modal -->
+    <template if:true={selectedJob}>
+
+        <section class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+
+                <div class="slds-modal__content slds-p-around_medium">
+
+                    <p><b>Company:</b> {selectedJob.Company__c}</p>
+                    <p><b>Job:</b> {selectedJob.Name}</p>
+                    <p><b>Location:</b> {selectedJob.Location__c}</p>
+
+                </div>
+
+                <footer class="slds-modal__footer">
+                    <lightning-button label="Close" onclick={closeDetails}></lightning-button>
+                </footer>
+
+            </div>
+        </section>
+
+    </template>
+
+</template>

@@ -1,0 +1,15 @@
+public class PlacementNotificationJob implements Queueable {
+
+    private Id applicationId;
+
+    public PlacementNotificationJob(Id applicationId) {
+        this.applicationId = applicationId;
+    }
+
+    public void execute(QueueableContext context) {
+
+        System.debug('Notification Job Started');
+        System.debug('Application Id : ' + applicationId);
+
+    }
+}
